@@ -1,0 +1,128 @@
+/* ===========================================
+   СОВРЕМЕННЫЕ ИКОНКИ
+   =========================================== */
+
+/* Базовые стили для всех иконок */
+i.fas, i.far, i.fab, i.fal, i.fad {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Иконки в навигации */
+.nav-link i {
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    opacity: 0.9;
+}
+
+.nav-link:hover i {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Иконки в карточках статистики */
+.stat-icon i,
+.kpi-icon i {
+    font-size: 1.75rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Иконки в кнопках */
+.btn i {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.btn:hover i {
+    transform: translateX(2px);
+}
+
+/* Анимированные иконки */
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.icon-pulse {
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.icon-rotate {
+    animation: iconRotate 2s linear infinite;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.icon-bounce {
+    animation: iconBounce 1s ease-in-out infinite;
+}
+
+/* Градиентные иконки */
+.icon-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Иконки с тенью */
+.icon-shadow {
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Иконки в таблицах */
+.data-table i {
+    font-size: 1rem;
+    color: #4a5568;
+    transition: all 0.2s;
+}
+
+.data-table i:hover {
+    color: #1e3a5f;
+    transform: scale(1.2);
+}
+
+/* Иконки действий */
+.btn-icon i {
+    font-size: 1.1rem;
+}
+
+.btn-icon:hover i {
+    transform: scale(1.2);
+}
+
+/* Логотип с иконкой */
+.logo i {
+    font-size: 1.75rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Иконки в заголовках */
+h1 i, h2 i, h3 i {
+    margin-right: 0.75rem;
+    opacity: 0.9;
+}
+
+/* Адаптивные иконки */
+@media (max-width: 768px) {
+    .nav-link i {
+        font-size: 1rem;
+        margin-right: 0.25rem;
+    }
+
+    .stat-icon i,
+    .kpi-icon i {
+        font-size: 1.5rem;
+    }
+}

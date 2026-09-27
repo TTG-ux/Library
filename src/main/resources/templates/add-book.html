@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление книги - Библиотека</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/add-book.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>Библиотека</span>
+            </div>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/" class="nav-link" data-page="home"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="/books" class="nav-link" data-page="books"><i class="fas fa-book"></i> Книги</a></li>
+            <li><a href="/readers" class="nav-link" data-page="readers"><i class="fas fa-users"></i> Читатели</a></li>
+            <li><a href="/loans" class="nav-link" data-page="loans"><i class="fas fa-exchange-alt"></i> Выдача</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="add-book-container">
+    <div class="add-book-card">
+        <div class="add-book-header">
+            <div class="book-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <h1>Добавление новой книги</h1>
+            <p>Заполните информацию о книге для добавления в каталог</p>
+        </div>
+
+        <form id="addBookForm" class="add-book-form" onsubmit="saveBook(event)">
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label>Название книги <span class="required">*</span></label>
+                    <input type="text" id="bookTitle" required maxlength="255" placeholder="Введите название книги" oninput="updatePreview(); updateCharCounter(this, 255)">
+                    <i class="fas fa-heading input-icon"></i>
+                    <div class="char-counter" id="titleCounter">0 / 255</div>
+                    <div class="form-hint">Максимум 255 символов</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Автор <span class="required">*</span></label>
+                    <input type="text" id="bookAuthor" required placeholder="Имя и фамилия автора" oninput="updatePreview()">
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label>ISBN <span class="required">*</span></label>
+                    <input type="text" id="bookIsbn" required pattern="\d{10}|\d{13}" placeholder="10 или 13 цифр" oninput="updatePreview(); validateIsbn(this)">
+                    <i class="fas fa-barcode input-icon"></i>
+                    <div class="form-hint">Формат: 10 или 13 цифр без пробелов</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Год издания <span class="required">*</span></label>
+                    <input type="number" id="bookYear" required min="1800" max="2026" placeholder="2024" oninput="updatePreview()">
+                    <i class="fas fa-calendar input-icon"></i>
+                    <div class="form-hint">От 1800 до текущего года</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Общее количество экземпляров <span class="required">*</span></label>
+                    <input type="number" id="bookTotal" required min="1" value="1" placeholder="1" oninput="updatePreview(); updateAvailableCopies()">
+                    <i class="fas fa-layer-group input-icon"></i>
+                    <div class="form-hint">Минимум 1 экземпляр</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Доступные экземпляры</label>
+                    <input type="number" id="bookAvailable" min="0" value="1" placeholder="1" oninput="updatePreview()">
+                    <i class="fas fa-check-circle input-icon"></i>
+                    <div class="form-hint">По умолчанию равно общему количеству</div>
+                </div>
+            </div>
+
+            <div class="book-preview">
+                <h3><i class="fas fa-eye"></i> Предварительный просмотр</h3>
+                <div class="preview-content">
+                    <div class="preview-item">
+                        <label>Название</label>
+                        <div class="value empty" id="previewTitle">Не указано</div>
+                    </div>
+                    <div class="preview-item">
+                        <label>Автор</label>
+                        <div class="value empty" id="previewAuthor">Не указано</div>
+                    </div>
+                    <div class="preview-item">
+                        <label>ISBN</label>
+                        <div class="value empty" id="previewIsbn">Не указано</div>
+                    </div>
+                    <div class="preview-item">
+                        <label>Год издания</label>
+                        <div class="value empty" id="previewYear">Не указано</div>
+                    </div>
+                    <div class="preview-item">
+                        <label>Всего экземпляров</label>
+                        <div class="value empty" id="previewTotal">Не указано</div>
+                    </div>
+                    <div class="preview-item">
+                        <label>Доступно</label>
+                        <div class="value empty" id="previewAvailable">Не указано</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-reset" onclick="resetForm()">
+                    <i class="fas fa-undo"></i> Сбросить
+                </button>
+                <a href="/static" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Отмена
+                </a>
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <i class="fas fa-plus"></i> Добавить книгу
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script src="/js/add-book.js"></script>
+</body>
+</html>

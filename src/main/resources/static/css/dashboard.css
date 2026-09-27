@@ -1,0 +1,326 @@
+/* ===========================================
+   ДАШБОРД - АНАЛИТИКА И МЕТРИКИ
+   =========================================== */
+
+.dashboard-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(30, 58, 95, 0.2);
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dashboard-header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+/* KPI Карточки */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.kpi-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s;
+    border: 1px solid #e2e8f0;
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.kpi-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.kpi-icon.blue {
+    background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+}
+
+.kpi-icon.green {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+}
+
+.kpi-icon.orange {
+    background: linear-gradient(135deg, #d69e2e 0%, #b7791f 100%);
+}
+
+.kpi-icon.red {
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+}
+
+.kpi-content h3 {
+    font-size: 2.5rem;
+    color: #1e3a5f;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.kpi-content p {
+    color: #4a5568;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.kpi-trend {
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.kpi-trend.up {
+    color: #38a169;
+}
+
+.kpi-trend.down {
+    color: #e53e3e;
+}
+
+.kpi-trend i {
+    font-size: 0.75rem;
+}
+
+/* Графики */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.chart-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-header h3 {
+    color: #1e3a5f;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.chart-header select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #4a5568;
+    background: white;
+    cursor: pointer;
+}
+
+.chart-header select:focus {
+    outline: none;
+    border-color: #3182ce;
+}
+
+.chart-body {
+    padding: 1.5rem;
+    height: 300px;
+    position: relative;
+}
+
+.chart-body canvas {
+    max-height: 100%;
+}
+
+/* Последние операции */
+.recent-operations {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.section-header h2 {
+    color: #1e3a5f;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.btn-refresh {
+    padding: 0.75rem 1.5rem;
+    background: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-refresh:hover {
+    background: #2c5282;
+    transform: translateY(-2px);
+}
+
+.btn-refresh:active {
+    transform: translateY(0);
+}
+
+.operations-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.operation-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #3182ce;
+    transition: all 0.2s;
+}
+
+.operation-item:hover {
+    background: #edf2f7;
+    transform: translateX(5px);
+}
+
+.operation-item.loan {
+    border-left-color: #38a169;
+}
+
+.operation-item.return {
+    border-left-color: #d69e2e;
+}
+
+.operation-item.overdue {
+    border-left-color: #e53e3e;
+}
+
+.operation-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.operation-item.loan .operation-icon {
+    background: #38a169;
+}
+
+.operation-item.return .operation-icon {
+    background: #d69e2e;
+}
+
+.operation-item.overdue .operation-icon {
+    background: #e53e3e;
+}
+
+.operation-content {
+    flex: 1;
+}
+
+.operation-content h4 {
+    color: #1e3a5f;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.operation-content p {
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+.operation-time {
+    color: #a0aec0;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 3rem;
+    color: #718096;
+}
+
+.loading-spinner i {
+    font-size: 2.5rem;
+    color: #3182ce;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-body {
+        height: 250px;
+    }
+}

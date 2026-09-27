@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация читателя - Библиотека</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/add-reader.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="logo-link">
+      <div class="logo">
+        <i class="fas fa-book-open"></i>
+        <span>Библиотека</span>
+      </div>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="/" class="nav-link" data-page="home"><i class="fas fa-home"></i> Главная</a></li>
+      <li><a href="/books" class="nav-link" data-page="books"><i class="fas fa-book"></i> Книги</a></li>
+      <li><a href="/readers" class="nav-link" data-page="readers"><i class="fas fa-users"></i> Читатели</a></li>
+      <li><a href="/loans" class="nav-link" data-page="loans"><i class="fas fa-exchange-alt"></i> Выдача</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="reader-container">
+  <div class="reader-card">
+    <div class="reader-header">
+      <div class="user-icon">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <h1>Регистрация читателя</h1>
+      <p>Заполните данные для регистрации нового читателя</p>
+    </div>
+
+    <form class="reader-form" onsubmit="registerReader(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Имя <span class="required">*</span></label>
+          <input type="text" id="readerFirstName" required placeholder="Иван">
+          <i class="fas fa-user input-icon"></i>
+        </div>
+
+        <div class="form-group">
+          <label>Фамилия <span class="required">*</span></label>
+          <input type="text" id="readerLastName" required placeholder="Иванов">
+          <i class="fas fa-user input-icon"></i>
+        </div>
+
+        <div class="form-group full-width">
+          <label>Email <span class="required">*</span></label>
+          <input type="email" id="readerEmail" required placeholder="example@email.com">
+          <i class="fas fa-envelope input-icon"></i>
+          <div class="form-hint">Введите корректный email адрес</div>
+        </div>
+
+        <div class="form-group full-width">
+          <label>Телефон <span class="required">*</span></label>
+          <input type="tel" id="readerPhone" required placeholder="+7 (999) 999-99-99" pattern="\+?[0-9]{10,15}">
+          <i class="fas fa-phone input-icon"></i>
+          <div class="form-hint">Формат: +7XXXXXXXXXX (10-15 цифр)</div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="reset" class="btn btn-secondary">
+          <i class="fas fa-undo"></i> Очистить
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-user-plus"></i> Зарегистрировать
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script src="/js/add-reader.js"></script>
+</body>
+</html>

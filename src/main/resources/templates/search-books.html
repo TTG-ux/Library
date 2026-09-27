@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поиск книг - Библиотечная система</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/search-books.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/admin" class="logo-link">
+      <div class="logo">
+        <i class="fas fa-book-open"></i>
+        <span>Библиотечная система</span>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="/admin" class="nav-link"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
+      <li><a href="/books" class="nav-link"><i class="fas fa-book"></i> Книги</a></li>
+      <li><a href="/readers" class="nav-link"><i class="fas fa-users"></i> Читатели</a></li>
+      <li><a href="/loans" class="nav-link"><i class="fas fa-exchange-alt"></i> Выдачи</a></li>
+      <li><a href="#" id="logoutBtn" class="nav-link"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="search-container">
+  <div class="search-card">
+    <div class="search-header">
+      <div class="search-icon"><i class="fas fa-search"></i></div>
+      <h1>Поиск и фильтрация книг</h1>
+      <p>Найдите нужную книгу по различным параметрам</p>
+    </div>
+
+    <form class="search-form" onsubmit="searchBooks(event)">
+      <div class="search-filters">
+        <div class="filter-group">
+          <label><i class="fas fa-heading"></i> Название</label>
+          <input type="text" id="searchTitle" placeholder="Введите название">
+        </div>
+        <div class="filter-group">
+          <label><i class="fas fa-user"></i> Автор</label>
+          <input type="text" id="searchAuthor" placeholder="Введите имя автора">
+        </div>
+        <div class="filter-group">
+          <label><i class="fas fa-barcode"></i> ISBN</label>
+          <input type="text" id="searchIsbn" placeholder="Введите ISBN">
+        </div>
+        <div class="filter-group">
+          <label><i class="fas fa-calendar"></i> Год издания</label>
+          <input type="number" id="searchYear" placeholder="2024" min="1800" max="2026">
+        </div>
+        <div class="filter-group">
+          <label><i class="fas fa-check-circle"></i> Доступность</label>
+          <select id="searchAvailable">
+            <option value="">Все книги</option>
+            <option value="true">Только доступные</option>
+            <option value="false">Только выданные</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="search-btn">
+        <i class="fas fa-search"></i> Найти книги
+      </button>
+    </form>
+
+    <div id="resultsContainer" class="results-container">
+      <div class="results-header">
+        <h2>Результаты поиска</h2>
+        <span class="results-count" id="resultsCount">0 книг найдено</span>
+      </div>
+      <div id="resultsList"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script src="/js/search-books.js"></script>
+</body>
+</html>

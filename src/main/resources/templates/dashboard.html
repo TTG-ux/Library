@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дашборд - Библиотечная система</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/admin" class="logo-link">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>Библиотечная система</span>
+            </div>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="/admin" class="nav-link"><i class="fas fa-tachometer-alt"></i> Админ-панель</a></li>
+            <li><a href="/dashboard" class="nav-link active"><i class="fas fa-chart-line"></i> Дашборд</a></li>
+            <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1><i class="fas fa-chart-line"></i> Аналитический дашборд</h1>
+        <p>Мониторинг ключевых показателей библиотеки</p>
+    </div>
+
+    <!-- KPI Карточки -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-icon blue">
+                <i class="fas fa-book"></i>
+            </div>
+            <div class="kpi-content">
+                <h3 id="kpiTotalBooks">0</h3>
+                <p>Всего книг</p>
+                <span class="kpi-trend up"><i class="fas fa-arrow-up"></i> <span id="kpiBooksTrend">0%</span></span>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon green">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="kpi-content">
+                <h3 id="kpiTotalReaders">0</h3>
+                <p>Читателей</p>
+                <span class="kpi-trend up"><i class="fas fa-arrow-up"></i> <span id="kpiReadersTrend">0%</span></span>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon orange">
+                <i class="fas fa-hand-holding"></i>
+            </div>
+            <div class="kpi-content">
+                <h3 id="kpiActiveLoans">0</h3>
+                <p>Активных выдач</p>
+                <span class="kpi-trend"><i class="fas fa-minus"></i> <span id="kpiLoansTrend">0%</span></span>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-icon red">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="kpi-content">
+                <h3 id="kpiOverdue">0</h3>
+                <p>Просрочено</p>
+                <span class="kpi-trend down"><i class="fas fa-arrow-down"></i> <span id="kpiOverdueTrend">0%</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Графики -->
+    <div class="charts-grid">
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3><i class="fas fa-chart-bar"></i> Динамика выдач</h3>
+                <select id="chartPeriod">
+                    <option value="7">7 дней</option>
+                    <option value="30" selected>30 дней</option>
+                    <option value="90">90 дней</option>
+                </select>
+            </div>
+            <div class="chart-body">
+                <canvas id="loansChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3><i class="fas fa-chart-pie"></i> Распределение книг</h3>
+            </div>
+            <div class="chart-body">
+                <canvas id="booksChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3><i class="fas fa-chart-line"></i> Активность читателей</h3>
+            </div>
+            <div class="chart-body">
+                <canvas id="readersChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3><i class="fas fa-chart-area"></i> Статусы выдач</h3>
+            </div>
+            <div class="chart-body">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Последние операции -->
+    <div class="recent-operations">
+        <div class="section-header">
+            <h2><i class="fas fa-history"></i> Последние операции</h2>
+            <button class="btn-refresh" id="refreshBtn">
+                <i class="fas fa-sync-alt"></i> Обновить
+            </button>
+        </div>
+        <div class="operations-list" id="operationsList">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Загрузка данных...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотека - Главная</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Навигация -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>Библиотека</span>
+            </div>
+        </a>
+        <!-- Навигация -->
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Главная</a></li>
+            <li><a href="/books" class="nav-link">Книги</a></li>
+            <li><a href="/readers" class="nav-link">Читатели</a></li>
+            <li><a href="/loans" class="nav-link">Выдача</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Система управления библиотекой</h1>
+        <p>Удобный инструмент для управления книжным фондом и читателями</p>
+        <!-- Кнопки в hero секции -->
+        <div class="hero-buttons">
+            <a href="/books" class="btn btn-primary">
+                <i class="fas fa-book"></i> Управление книгами
+            </a>
+            <a href="/readers" class="btn btn-secondary">
+                <i class="fas fa-users"></i> Управление читателями
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <div class="stat-info">
+                <h3 id="totalBooks">0</h3>
+                <p>Всего книг</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+                <h3 id="totalReaders">0</h3>
+                <p>Читателей</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-hand-holding"></i>
+            </div>
+            <div class="stat-info">
+                <h3 id="activeLoans">0</h3>
+                <p>Активных выдач</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-info">
+                <h3 id="overdueLoans">0</h3>
+                <p>Просрочено</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <h2>Возможности системы</h2>
+        <!-- Возможности системы -->
+        <div class="features-grid">
+            <!-- Только для АДМИНА -->
+            <a href="/add-book" class="feature-card clickable admin-only">
+                <div class="feature-icon"><i class="fas fa-plus-circle"></i></div>
+                <h3>Добавление книг</h3>
+                <p>Добавляйте новые книги в каталог</p>
+            </a>
+
+            <a href="/search-books" class="feature-card clickable">
+                <div class="feature-icon"><i class="fas fa-search"></i></div>
+                <h3>Поиск и фильтрация</h3>
+                <p>Быстрый поиск по каталогу</p>
+            </a>
+
+            <!-- Только для АДМИНА -->
+            <a href="/add-reader" class="feature-card clickable admin-only">
+                <div class="feature-icon"><i class="fas fa-user-plus"></i></div>
+                <h3>Регистрация читателей</h3>
+                <p>Ведение базы данных читателей</p>
+            </a>
+
+            <!-- Только для АДМИНА -->
+            <a href="/loan-return" class="feature-card clickable admin-only">
+                <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
+                <h3>Выдача и возврат</h3>
+                <p>Управление выдачей книг</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2026 Библиотека. Все права защищены.</p>
+</footer>
+
+<script src="/js/app.js"></script>
+<script>
+    // Загрузка статистики
+    async function loadStats() {
+        try {
+            const [books, readers, loans, overdue] = await Promise.all([
+                fetch('/api/books').then(r => r.json()),
+                fetch('/api/readers').then(r => r.json()),
+                fetch('/api/loans/overdue').then(r => r.json())
+            ]);
+
+            document.getElementById('totalBooks').textContent = books.length;
+            document.getElementById('totalReaders').textContent = readers.length;
+            document.getElementById('overdueLoans').textContent = overdue.length;
+        } catch (error) {
+            console.error('Ошибка загрузки статистики:', error);
+        }
+    }
+
+    loadStats();
+</script>
+<script>
+    // Автоматическая активация кнопки навигации
+    document.addEventListener('DOMContentLoaded', function() {
+        // Определяем текущую страницу
+        const currentPage = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Сопоставление путей и страниц
+        const pageMap = {
+            '/': 'home',
+            '/index.html': 'home',
+            '/books': 'books',
+            '/books.html': 'books',
+            '/readers': 'readers',
+            '/readers.html': 'readers',
+            '/loans': 'loans',
+            '/loans.html': 'loans'
+        };
+
+        // Получаем текущую страницу
+        const currentRoute = pageMap[currentPage] || 'home';
+
+        // Убираем active со всех ссылок
+        navLinks.forEach(link => link.classList.remove('active'));
+
+        // Добавляем active на нужную ссылку
+        const activeLink = document.querySelector(`.nav-link[data-page="${currentRoute}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+    });
+</script>
+</body>
+</html>

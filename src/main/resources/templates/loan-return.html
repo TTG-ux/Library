@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выдача и возврат - Библиотечная система</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/loan-return.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/admin" class="logo-link">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>Библиотечная система</span>
+            </div>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="/admin" class="nav-link"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
+            <li><a href="/books" class="nav-link"><i class="fas fa-book"></i> Книги</a></li>
+            <li><a href="/readers" class="nav-link"><i class="fas fa-users"></i> Читатели</a></li>
+            <li><a href="/loans" class="nav-link active"><i class="fas fa-exchange-alt"></i> Выдачи</a></li>
+            <li><a href="#" id="logoutBtn" class="nav-link"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="loan-container">
+    <div class="loan-card">
+        <div class="loan-header">
+            <div class="loan-icon"><i class="fas fa-exchange-alt"></i></div>
+            <h1>Выдача и возврат книг</h1>
+            <p>Управление выдачей книг читателям</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('issue')">
+                <i class="fas fa-hand-holding"></i> Выдача книги
+            </button>
+            <button class="tab" onclick="switchTab('return')">
+                <i class="fas fa-undo"></i> Возврат книги
+            </button>
+            <button class="tab" onclick="switchTab('overdue')">
+                <i class="fas fa-exclamation-triangle"></i> Просроченные
+            </button>
+        </div>
+
+        <div id="issueTab" class="tab-content active">
+            <form onsubmit="issueBook(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fas fa-book"></i> Книга</label>
+                        <select id="issueBookId" required>
+                            <option value="">Выберите книгу</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Читатель</label>
+                        <select id="issueReaderId" required>
+                            <option value="">Выберите читателя</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> Срок возврата</label>
+                        <input type="date" id="issueDueDate" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-hand-holding"></i> Выдать книгу
+                </button>
+            </form>
+        </div>
+
+        <div id="returnTab" class="tab-content">
+            <div class="form-group">
+                <label><i class="fas fa-receipt"></i> ID записи о выдаче</label>
+                <input type="number" id="returnLoanId" placeholder="Введите ID записи">
+            </div>
+            <button onclick="returnBook()" class="btn btn-success">
+                <i class="fas fa-undo"></i> Вернуть книгу
+            </button>
+        </div>
+
+        <div id="overdueTab" class="tab-content">
+            <button onclick="loadOverdue()" class="btn btn-primary" style="margin-bottom: 1rem;">
+                <i class="fas fa-sync"></i> Обновить список
+            </button>
+            <div id="overdueList"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script src="/js/loan-return.js"></script>
+</body>
+</html>

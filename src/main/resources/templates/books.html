@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление книгами - Библиотечная система</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/add-book.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/admin" class="logo-link">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>Библиотечная система</span>
+            </div>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/admin" class="nav-link"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
+            <li><a href="/books" class="nav-link active"><i class="fas fa-book"></i> Книги</a></li>
+            <li><a href="/readers" class="nav-link"><i class="fas fa-users"></i> Читатели</a></li>
+            <li><a href="/loans" class="nav-link"><i class="fas fa-exchange-alt"></i> Выдачи</a></li>
+            <li><a href="#" id="logoutBtn" class="nav-link"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="add-book-container">
+    <div class="add-book-card">
+        <div class="add-book-header">
+            <div class="book-icon"><i class="fas fa-book"></i></div>
+            <h1>Управление книгами</h1>
+            <p>Добавление и редактирование книжного фонда</p>
+        </div>
+
+        <form id="addBookForm" class="add-book-form" onsubmit="saveBook(event)">
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label>Название книги <span class="required">*</span></label>
+                    <input type="text" id="bookTitle" required maxlength="255" placeholder="Введите название книги">
+                </div>
+                <div class="form-group">
+                    <label>Автор <span class="required">*</span></label>
+                    <input type="text" id="bookAuthor" required placeholder="Имя и фамилия автора">
+                </div>
+                <div class="form-group">
+                    <label>ISBN <span class="required">*</span></label>
+                    <input type="text" id="bookIsbn" required pattern="\d{10}|\d{13}" placeholder="10 или 13 цифр">
+                </div>
+                <div class="form-group">
+                    <label>Год издания <span class="required">*</span></label>
+                    <input type="number" id="bookYear" required min="1800" max="2026" placeholder="2024">
+                </div>
+                <div class="form-group">
+                    <label>Общее количество <span class="required">*</span></label>
+                    <input type="number" id="bookTotal" required min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Доступные экземпляры</label>
+                    <input type="number" id="bookAvailable" min="0" value="1">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset" class="btn btn-reset"><i class="fas fa-undo"></i> Сбросить</button>
+                <a href="/admin" class="btn btn-secondary"><i class="fas fa-times"></i> Отмена</a>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Добавить книгу</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script src="/js/add-book.js"></script>
+</body>
+</html>
